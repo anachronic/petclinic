@@ -1,7 +1,6 @@
-# README
+# Pet clinic
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a sample app that intends to show some of the basic rails capabilities
 
 Things you may want to cover:
 
