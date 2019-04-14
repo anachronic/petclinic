@@ -1,4 +1,4 @@
-# Pet clinic
+# Pet clinic [![CircleCI](https://circleci.com/gh/anachronic/petclinic.svg?style=svg)](https://circleci.com/gh/anachronic/petclinic)
 
 This is a sample app that intends to show some of the basic rails capabilities
 

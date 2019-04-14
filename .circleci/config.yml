@@ -1,0 +1,42 @@
+---
+version: 2
+jobs:
+  build:
+    working_directory: ~/petclinic
+    docker:
+      - image: circleci/ruby:2.6.0-node
+        environment:
+          PGHOST: localhost
+          PGUSER: petclinic
+          RAILS_ENV: test
+      - image: postgres:9.5
+        environment:
+          POSTGRES_USER: petclinic
+          POSTGRES_DB: petclinic_test
+          POSTGRES_PASSWORD: "test"
+    steps:
+      - checkout
+
+      # Restore Cached Dependencies
+      - type: cache-restore
+        name: Restore bundle cache
+        key: petclinic-{{ checksum "Gemfile.lock" }}
+
+      # Bundle install dependencies
+      - run: bundle install --path vendor/bundle
+
+      # Cache Dependencies
+      - type: cache-save
+        name: Store bundle cache
+        key: petclinic-{{ checksum "Gemfile.lock" }}
+        paths:
+          - vendor/bundle
+
+      # Wait for DB
+      - run: dockerize -wait tcp://localhost:5432 -timeout 1m
+
+      # Setup the database
+      - run: rake db:setup
+
+      # Run the tests
+      - run: bundle exec rspec
