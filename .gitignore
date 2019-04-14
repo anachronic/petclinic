@@ -25,3 +25,9 @@
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
+
+# tmuxinator
+.tmuxinator.yml
+
+# mac .DS_Store
+.DS_Store
