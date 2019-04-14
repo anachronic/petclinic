@@ -1,5 +1,8 @@
 {
   "name": "petclinic",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "@types/node": "^11.13.4"
+  }
 }
